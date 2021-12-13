@@ -1,7 +1,12 @@
+import ReTable from "./Table";
+import Wrapper from "./Wrapper";
+
 function App() {
   return (
     <div>
-      <h1>App</h1>
+      <Wrapper>
+        <ReTable />
+      </Wrapper>
     </div>
   );
 }
