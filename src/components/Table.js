@@ -9,13 +9,27 @@ import {
   TableRow,
   TableSortLabel,
 } from "@mui/material";
+import axios from "axios";
+import { useEffect, useState } from "react";
 
 import {
   transactionData,
   transactionHeaders,
 } from "../service/TransactionData";
+import { ExportToExcel } from "./ExportToExcel";
 
 function ReTable() {
+  const [data, setData] = useState([]);
+  const fileName = "myfile";
+
+  useEffect(() => {
+    const fetchData = () => {
+      axios
+        .get("https://jsonplaceholder.typicode.com/posts")
+        .then((r) => setData(r.data));
+    };
+    fetchData();
+  }, []);
   return (
     <Box sx={{ width: "100%" }}>
       <Paper sx={{ width: "100%", mb: 2 }}>
@@ -58,6 +72,7 @@ function ReTable() {
             </TableBody>
           </Table>
         </TableContainer>
+        <ExportToExcel apiData={transactionData} fileName={fileName} />
       </Paper>
     </Box>
   );
