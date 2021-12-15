@@ -9,8 +9,6 @@ import {
   TableRow,
   TableSortLabel,
 } from "@mui/material";
-import axios from "axios";
-import { useEffect, useState } from "react";
 
 import {
   transactionData,
@@ -19,17 +17,8 @@ import {
 import { ExportToExcel } from "./ExportToExcel";
 
 function ReTable() {
-  const [data, setData] = useState([]);
   const fileName = "myfile";
 
-  useEffect(() => {
-    const fetchData = () => {
-      axios
-        .get("https://jsonplaceholder.typicode.com/posts")
-        .then((r) => setData(r.data));
-    };
-    fetchData();
-  }, []);
   return (
     <Box sx={{ width: "100%" }}>
       <Paper sx={{ width: "100%", mb: 2 }}>
